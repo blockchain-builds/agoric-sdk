@@ -64,7 +64,7 @@ jobs:
           
           # create binaries archive
           VERSION=$(${GOPATH}/bin/ag-chain-cosmos version --long | grep version: | cut -d " " -f2)
-          tar -czvf ${HOME}/agoric-sdk-${VERSION}.tar.gz ${GOPATH}/bin/*
+          (cd ${GOPATH}/bin/ && tar -chzvf ${HOME}/agoric-sdk-${VERSION}.tar.gz *)
           
           # set outputs
           echo "::set-output name=version::${VERSION}"
