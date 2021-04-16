@@ -25,6 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      - name: Setup Node 14 enviroment
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      
       - name: Setup Go environment
         uses: actions/setup-go@v2.1.3
         with:
@@ -50,6 +55,8 @@ jobs:
           git checkout ${{ github.event.inputs.git_checkout }}
           
           # build agoric sdk
+          yarn install
+          yarn build
           (cd packages/cosmic-swingset && make)
           
           # save version output
